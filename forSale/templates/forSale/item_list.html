@@ -1,0 +1,39 @@
+{% extends "forSale/layout.html" %}                   <!--base.html을 상속받는다고 선언-->
+{% block title %}상가 매물{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static "bootstrap/css/bootstrap.css" %}{% endblock %}
+{% load humanize %}
+
+{% block content %}
+    {{ block.super }}
+
+        <section class="zipgagosipda">
+  <div class="container">
+    <form action="" method="GET">
+        <input type="text" name="q" value="{{ q }}" />
+        <input type="submit" value="검색" />
+    </form>
+    <p class="lead text-muted mb-5"></p>
+    <div class="row">
+    {% for item in item_list %}
+      <div class="col-md-4 mb-4">
+        <div class="card shadow border-0 h-100"><a href="{{ item.get_absolute_url }}"><img src="{{ item.photo.url }}" alt="" class="card-img-top"></a>
+          <div class="card-body">
+            <h5><a class="text-dark" href="{{ item.get_absolute_url }}">{{ item.name }} </a></h5>
+             <p>{{ item.price }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+   {% if request.user.is_superuser %}
+    <button type="submit " class="btnking">
+        <a href="{% url 'forSale:item_new' %}"  style="; color:#000000">새 매물 등록</a>
+    </button>
+  {% endif %}
+  </div>
+</section>
+
+
+
+{% endblock %}

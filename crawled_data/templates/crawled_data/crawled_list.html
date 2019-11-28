@@ -1,0 +1,26 @@
+{% extends "crawled_data/layout.html" %}                   <!--base.html을 상속받는다고 선언-->
+{% block title %}창업 뉴스{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static "bootstrap/css/bootstrap.css" %}{% endblock %}
+{% load humanize %}
+
+{% block content %}
+    {{ block.super }}
+
+    <section class="zipgagosipda">
+  <div class="container">
+  <hr>
+    <form action="" method="GET">
+        <input type="text" name="q" value="{{ q }}" />
+        <input type="submit" value="검색" />
+    </form>
+    <p class="lead text-muted mb-5"></p>
+    {% for news in crawled_list %}
+      <h5><a class="text-dark" href="{{ news.link }}">{{ news.title }}</a></h5></br>
+      {% endfor %}
+  </div>
+</section>
+
+
+
+{% endblock %}

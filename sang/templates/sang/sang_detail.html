@@ -1,0 +1,464 @@
+{% extends "base.html" %}                   <!--base.html을 상속받는다고 선언-->
+
+{% block title %}{% endblock %}    <!--title 블록 재정의-->
+
+<!--정적 파일인 css 연결하기 위하여, staticfiles를 로드-->
+{% load staticfiles %}
+<!--extrastyle 블록을 재정의하여 추가적으로 home.css 연결-->
+{% block extrastyle %}{% static "home.css" %}{% endblock %}
+
+{% block content %}
+
+{% load staticfiles %}
+<!-- DataTables CSS -->
+  <style>
+  </style>
+
+
+  <script>
+	$(window).on("scroll", function() {
+		if ($(window).scrollTop() > 300) {
+			$("#mainNav").css("background-color","#ffffff").css("box-shadow", "0 0 14px rgba(0,0,0,.4)");
+			$(".navbar-nav .nav-item .nav-link").css("color","#000000");
+		}else {
+      $("#mainNav").css("background-color","transparent").css("box-shadow", "none");
+      $(".navbar-nav .nav-item .nav-link").css("color","#ffffff");
+		}
+	});
+</script>
+
+<div style="height:400px; width:100%; background-image: url({% static 'img/상권분석.jpg' %});">
+  <h1 class="menu_name">상권분석</h1>
+</div>
+  <div style="height:70px;"></div>
+
+
+  <h4 style="text-align: center; color: #0f4c97; "> <span style="margin: 0 auto;">{{ sang.gu_title }} {{ sang.dong_title }}</span></h4>
+  <br><br>
+{#<img style="width:27px;" src="{% static 'info.png' %}">#}
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f460952f0d62b1ca6bd68a4534bb4978"></script>
+  <div id="map" style="width: 60%; margin: 0 auto; height:350px;"></div>
+  <br>
+
+
+{% load humanize %}
+<div style="margin: 0 auto; text-align: center; height: 250px;">
+  <div style="display: inline-block; width:30%; height:250px; border:3px solid #e9e9e9; overflow:hidden; " >
+    <br>
+    <img src="{% static 'img/demographic.png' %}" style="width:100px; font-size: 0;" alt=""/>
+    <p>주거인구</p>
+    <h1 style="color:#0f4c97;">{{ sang.living_pop|intcomma }}명</h1>
+  </div>
+  <div  id="container2" style="display: inline-block; width:30%; height:250px; border:3px solid #e9e9e9;" >
+  </div>
+</div>
+   <br><br><br>
+  <p  style="width: 60%; margin: 0 auto; ">추정 유동인구</p>
+  <p  id="examin_spot"  style="width: 60%; margin: 0 auto;font-size:13px;"></p><br>
+  <div id="container6"  style="width: 60%; margin: 0 auto; height: 500px;"></div>
+  <br>
+  <p  style="width: 60%; margin: 0 auto; ">업종별 점포 수</p><br>
+  <div id="container1" style="width: 60%; margin: 0 auto; height: 500px"></div>
+
+  <br>
+
+  <p style="width: 60%; margin: 0 auto;">업종별 평균 월매출</p>
+  <br>
+  <div style="width: 60%; margin: 0 auto; text-align: center; height: 500px;">
+    <div style="width: 70%;display: inline-block;  height: 500px; ">
+      <div id="container3" style="height: 100%;"></div>
+    </div>
+
+    <div style=" width: 30%; display: inline-block; float:left;">
+      <table class="table table-nomargin dataTable table-bordered" id="container4">
+        <thead>
+            <th style="width:20px;">순위</th>
+            <th style="width:20px;">순위</th>
+            <th  style="width:100px;">업종명</th>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script type="text/javascript">
+{#  업종별 점포수 #}
+        $(function () {
+                var processed_json = new Array();
+                {#var processed_json = [];#}
+                $.getJSON('{% static 'csvjson.json' %}', function(data) {
+                    // Populate series
+                    for (i = 0; i < data.length; i++){
+                        {#console.log(data[i].id);#}
+                        if(data[i].id == {{ sang.id }}){
+                            processed_json.push([data[i].Classification, data[i].count]);
+                        }
+                    }
+                    console.log(processed_json);
+
+                    // draw chart
+                    $('#container1').highcharts({
+                    chart: {
+                        type: "column"
+                    },
+                    title: {
+                        text: ""
+                    },
+                    plotOptions: {
+                        column: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    xAxis: {
+                        type:'category',
+                        allowDecimals: false,
+                        title: {
+                            text: ""
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: ""
+                        }
+                    },
+                    credits: {
+                          enabled: false
+                      },
+                    series: [{
+                        name : '',
+                        colorByPoint: true,
+                        data: processed_json,
+                        showInLegend: false
+
+                    }]
+                });
+            });
+        });
+    </script>
+  <script type="text/javascript">
+{#  연령별 #}
+      $(function () {
+            var processed_json2 = new Array();
+            {#var processed_json = [];#}
+            $.getJSON('{% static 'age.json' %}', function(data) {
+                // Populate series
+                for (i = 0; i < data.length; i++) {
+                    if (data[i].id == {{ sang.id }}) {
+                        processed_json2.push(["0~9세", data[i].zeronine], ["10~19세", data[i].tennine], ["20~29세", data[i].twentynine],
+                            ["30~39세", data[i].thirtynine], ["40~49세", data[i].fourtynine], ["50~59세", data[i].fiftynine], ["60세 이상", data[i].sixty_up]);
+                    }
+                }
+                 console.log(processed_json2);
+
+            $('#container2').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: ""
+                },
+                tooltip: {
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                        enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                credits: {
+                      enabled: false
+                  },
+                series: [{
+                    name : '',
+                    {#colorByPoint: true,#}
+                    data: processed_json2
+                }]
+        });
+            });
+      });
+  </script>
+  <script type="text/javascript">
+{#  업종별 매출#}
+          $(function () {
+                var processed_json3 = new Array();
+                $.getJSON('{% static 'nice.json' %}', function(data) {
+                    // Populate series
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i].id == {{ sang.id }}) {
+                            processed_json3.push(["한식", data[i].HS], ["분식", data[i].BS], ["일식/수산물", data[i].IS],
+                                ["중식", data[i].JS], ["치킨집", data[i].CHICK],["커피점/카페", data[i].CAFÉ], ["편의점/슈퍼마켓", data[i].CS],
+                                ["패스트푸드", data[i].FF], ["제과제빵", data[i].JB], ["양식", data[i].YS], ["유흥주점", data[i].YH] );
+
+                        }
+                    }
+                     console.log(processed_json3);
+
+                     {#막대그래프#}
+                     Highcharts.setOptions({
+                      lang: {
+                        thousandsSep: ','
+                      }
+                    });
+                    $('#container3').highcharts({
+                          chart: {
+                              type: "bar"
+                          },
+                          title: {
+                              text: ""
+                          },
+                          plotOptions: {
+                              bar: {
+                                  dataLabels: {
+                                      enabled: true,
+                                      inside: false,
+                                      crop: false,
+                                      overflow: "none"
+                                  }
+                              }
+                          },
+                          xAxis: {
+                              type:'category',
+                              allowDecimals: false,
+                              title: {
+                                  text: ""
+                              }
+                          },
+                          yAxis: {
+                              {#max: yAxisMax,#}
+                              title: {
+                                  text: "월 평균 매출(단위:원)"
+                              },
+                              labels : {
+                                  ormat: '{value:,.0f}'
+					                    }
+                          },
+
+                          credits: {
+                              enabled: false
+                          },
+                          series: [{
+                              name : '',
+                              data: processed_json3,
+                              showInLegend: false,
+                              color:'#CBA6C3'
+
+                          }]
+            });
+        });
+  });
+
+
+      </script>
+
+  <script>
+
+   $(function () {
+                var processed_json9 = new Array();
+                $.getJSON('{% static 'nice.json' %}', function(data) {
+                    // Populate series
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i].id == {{ sang.id }}) {
+                            processed_json9.push({"mc": data[i].HS, "uj": "한식"}, {"mc": data[i].BS, "uj":"분식"}, {"mc": data[i].IS, "uj":"일식/수산물"},
+                                {"mc": data[i].JS,"uj": "중식"}, {"mc": data[i].CHICK, "uj":"치킨집"},{"mc": data[i].CAFÉ, "uj":"커피점/카페"}, {"mc": data[i].CS, "uj":"편의점/슈퍼마켓"},
+                                {"mc": data[i].FF, "uj":"패스트푸드"}, {"mc": data[i].JB, "uj":"제과제빵"}, {"mc": data[i].YS, "uj":"양식"}, {"mc": data[i].YH, "uj":"유흥주점"} );
+                        }
+                    }
+                     console.log(processed_json9);
+
+
+                  var t = $('#container4').DataTable({
+                      "paging":   false,
+                      "info":     false,
+                      "searching": false,
+
+                     data: processed_json9,
+                     columns : [
+                          { title: "순위", data:null},
+                          { title: "순위", data:"mc", "visible": false},
+                          { title: "업종명", data:"uj"}
+                     ],
+                      orderFixed: {
+                          pre: [ 1, 'desc' ]
+                      }
+                      });
+                  t.on('order.dt search.dt', function() {
+                      t.column(0, {
+                        search: 'applied',
+                        order: 'applied'
+                      }).nodes().each(function(cell, i) {
+                        cell.innerHTML = i + 1;
+                      });
+                }).draw();
+
+        });
+   });
+  </script>
+  <script type="text/javascript">
+  {#  유동인구 #}
+            $(function () {
+                  var processed_json6 = new Array();
+                  var processed_json7 = new Array();
+                  var processed_json8 = new Array();
+                  var examin_spot = new Array();
+
+                  $.getJSON('{% static 'ingu.json' %}', function(data) {
+                      // Populate series
+                      for (i = 0; i < data.length; i++) {
+                          if (data[i].ID == {{ sang.id }}) {
+
+                              examin_spot.push([data[i].EXAMIN_SPOT_NM]);
+                              document.getElementById("examin_spot").innerHTML = examin_spot[0];
+
+                              if (data[i].EXAMIN_DATE == "금"){
+                                processed_json6.push([data[i].TMZON, data[i].POPLTN]);
+                              } else if (data[i].EXAMIN_DATE == "월"){
+                                processed_json7.push([data[i].TMZON, data[i].POPLTN]);
+                              } else {
+                                processed_json8.push([data[i].TMZON, data[i].POPLTN]);
+                              }
+
+                          }
+                      }
+
+
+                      console.log(processed_json6);
+                      console.log(processed_json7);
+                      console.log(processed_json8);
+                      console.log(examin_spot);
+
+
+                      $('#container6').highcharts({
+                            chart: {
+                                type: "line"
+                            },
+                            title: {
+                                text: ""
+                            },
+                            xAxis: {
+                                type:'category',
+                                 tickInterval: 2,
+                                title: {
+                                    text: ""
+                                }
+                            },
+                            yAxis: {
+                                {#max: yAxisMax,#}
+                                title: {
+                                    text: ""
+                                },
+                                labels : {
+                                    {#ormat: '{value:,.0f}'#}
+                                }
+                            },
+
+                            credits: {
+                                enabled: false
+                            },
+                            series: [
+                            {
+                                name : '금요일',
+                                color: '#492540',
+                                lineWidth:1,
+                                data: processed_json6
+                            },
+
+                            {
+                                name : '월요일',
+                                color: '#f26d5b',
+                                lineWidth:1,
+                                data: processed_json7},
+                            {
+                                name : '토요일',
+                                lineWidth:1,
+                                color: '#c03546',
+                                data: processed_json8}
+                            ]
+              });
+
+          });
+    });
+
+    </script>
+
+
+
+  <script>
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          mapOption = {
+              center: new kakao.maps.LatLng({{ sang.lat }}, {{ sang.lng }}), // 지도의 중심좌표
+              level: 3  // 지도의 확대 레벨
+          };
+
+      var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+      var positions = [];
+        $.getJSON('{% static 'markers.json' %}', function(data) {
+            // Populate series
+            for (i = 0; i < data.length; i++) {
+                if (data[i].dong_title == "{{ sang.dong_title }}") {
+                    {#positions.push([ data[i].dong_title, data[i].class, data[i].lat, data[i].lng]);#}
+                    if (data[i].class == "한식"){
+
+                    } else if (data[i].class == "커피점/카페"){
+
+                    } else if (data[i].class == "종합소매점"){
+
+                    }
+                }
+
+            }
+            console.log(positions)
+
+        });
+
+      var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png";
+
+      var coffeepositions = [];
+
+      for (var i = 0; i < positions.length; i ++) {
+          if (positions[i].class == '커피점/카페') {
+              coffeepositions.push([data[i].dong_title, data[i].class, data[i].lat, data[i].lng]);
+          }
+      }
+
+
+</script>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

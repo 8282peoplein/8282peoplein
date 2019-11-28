@@ -1,0 +1,333 @@
+{% extends "base.html" %}                   <!--base.html을 상속받는다고 선언-->
+
+{% block title %}{% endblock %}    <!--title 블록 재정의-->
+
+<!--정적 파일인 css 연결하기 위하여, staticfiles를 로드-->
+{% load staticfiles %}
+<!--extrastyle 블록을 재정의하여 추가적으로 home.css 연결-->
+{% block extrastyle %}{% static "home.css" %}{% endblock %}
+
+{% block content %}
+
+{% load staticfiles %}
+
+  <script>
+	$(window).on("scroll", function() {
+		if ($(window).scrollTop() > 300) {
+			$("#mainNav").css("background-color","#ffffff").css("box-shadow", "0 0 14px rgba(0,0,0,.4)");
+			$(".navbar-nav .nav-item .nav-link").css("color","#000000");
+		}else {
+      $("#mainNav").css("background-color","transparent").css("box-shadow", "none");
+      $(".navbar-nav .nav-item .nav-link").css("color","#ffffff");
+		}
+	});
+</script>
+
+<div style="height:400px; width:100%; background-image: url({% static 'img/업종추천.jpg' %});">
+  <h1 class="menu_name">업종추천</h1>
+</div>
+
+
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-latest.min.js" type="application/javascript"></script>
+    <script src="{% static 'js/hexa.js' %}" type="application/javascript"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2efc7c37bb5224fa7e38f9b7f3a8bc32&libraries=services,clusterer,drawing"></script>
+    <link href='{% static "css/chu.css" %}' rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+	<script>
+
+
+		jQuery(document).ready(function(){
+  //sido option 추가
+  jQuery.each(hangjungdong.sido, function(idx, code){
+    //append를 이용하여 option 하위에 붙여넣음
+    jQuery('#sido').append(fn_option(code.sido, code.codeNm));
+  });
+
+   //sido 변경시 시군구 option 추가
+  jQuery('#sido').change(function(){
+    jQuery('#sigugun').show();
+    jQuery('#sigugun').empty();
+    jQuery('#sigugun').append(fn_option('','선택')); //
+    jQuery.each(hangjungdong.sigugun, function(idx, code){
+      if(jQuery('#sido > option:selected').val() == code.sido)
+        jQuery('#sigugun').append(fn_option(code.sigugun, code.codeNm));
+    });
+
+    //세종특별자치시 예외처리
+    //옵션값을 읽어 비교
+    if(jQuery('#sido option:selected').val() == '36'){
+      jQuery('#sigugun').hide();
+      //index를 이용해서 selected 속성(attr)추가
+      //기본 선택 옵션이 최상위로 index 0을 가짐
+      jQuery('#sigugun option:eq(1)').attr('selected', 'selected');
+      //trigger를 이용해 change 실행
+      jQuery('#sigugun').trigger('change');
+    }
+  });
+
+  //시군구 변경시 행정동 옵션추가
+  jQuery('#sigugun').change(function(){
+    //option 제거
+    var sido = jQuery('#sido option:selected').val();
+    var sigugun = jQuery('#sigugun option:selected').val();
+    var dong = jQuery('#dong option:selected').val();
+    var codeNm = jQuery('#sigugun option:selected').text();
+    var ADONG_NM = sido + sigugun + dong ;
+
+
+     $.getJSON("{% static 'chu.json' %}", function(data) {
+      var items = [];
+      var gugu = [];
+      for (i = 0; i < data.length; i++){
+
+          if(data[i].id == sigugun){
+              items.push("<tr>");
+              items.push("<th>" +"1" +"</th>");
+              items.push("<td>" + [data[i].chu1] + "</td>");
+              items.push("<td>" + [data[i].bchu1] + "</td>");
+              items.push("<tr>");
+              items.push("<th>" +"2" +"</th>");
+              items.push("<td>" + [data[i].chu2] + "</td>");
+              items.push("<td>" + [data[i].bchu2] + "</td>");;
+              items.push("<tr>");
+              items.push("<th>" +"3" +"</th>");
+              items.push("<td>" + [data[i].chu3] + "</td>");
+              items.push("<td>" + [data[i].bchu4] + "</td>");
+              items.push("<tr>");
+              items.push("<th>" +"4" +"</th>");
+              items.push("<td>" + [data[i].chu4] + "</td>");
+              items.push("<tr>")
+              console.log(items);
+              gugu.push("<p>"+[data[i].dong_name]+"</p>"+"은 "+"<p>"+[data[i].a]+"</p>"+" 이 "+"<p>"+[data[i].b]+"</p>"+"개일 때 "
+                  + "<p>"+[data[i].bchu1]+"</p>" + "는 " + "<p>"+[data[i].c]+"</p>" +"개이며 " + "<p>"+[data[i].d]+"</p>"
+                  +" 상권입니다.<br>인구밀도가 비슷한 지역으로는 " + "<p>"+[data[i].e]+"</p>" +"이 있으며 " + "<p>"+[data[i].a]+"</p>" +"이 "
+                  + "<p>"+[data[i].f]+"</p>" + "개일 때 " + "<p>"+[data[i].bchu1]+"</p>" + "는 " + "<p>"+[data[i].g]+"</p>"
+                  + "개입니다.<br>서로 영향을 미치는 업종을 분석한 결과 " + "<p>"+[data[i].chu1]+", "+[data[i].chu2]+", "+[data[i].chu3]+", "
+                  +[data[i].chu4]+ "</p>" + "을 추천합니다."
+              );
+
+          }
+      }
+
+      $("<tbody/>", {html: items.join("")}).appendTo("table");
+      $('#gugup').html(gugu.join(""));
+      });
+    // 한글 -> 좌표 변환
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    var callback = function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var x = result[0].address.x;
+            var y = result[0].address.y;
+            console.log(x,y);
+            var container = document.getElementById('map');
+            var options = {
+              center: new kakao.maps.LatLng(y,x),
+              level: 3
+            };
+
+            var map = new kakao.maps.Map(container, options);
+
+
+        }
+    };
+    jQuery('#dong').empty();
+    jQuery.each(hangjungdong.dong, function(idx, code){
+      if(jQuery('#sido > option:selected').val() == code.sido && jQuery('#sigugun > option:selected').val() == code.sigugun){
+        jQuery('#dong').append(fn_option(code.dong, code.codeNm));
+
+      }
+{#console.log(code.dong, code.codeNm);#}
+    });
+    //option의 맨앞에 추가
+    jQuery('#dong').prepend(fn_option('','선택'));
+    //option중 선택을 기본으로 선택
+    jQuery('#dong option:eq("")').attr('selected', 'selected');
+    geocoder.addressSearch("'"+codeNm+"'", callback);
+    console.log(ADONG_NM);
+  });
+
+  jQuery('#dong').change(function(){
+    var sido = jQuery('#sido option:selected').val();
+    var sigugun = jQuery('#sigugun option:selected').val();
+    var dong = jQuery('#dong option:selected').val();
+    var codeNm = jQuery('#dong option:selected').text();
+    var ADONG_NM = sido + sigugun + dong ;
+
+
+
+
+    $.getJSON("{% static 'hexa.json' %}", function(data) {
+      var hexa = [];
+      var score = [];
+      for (i = 0; i < data.length; i++){
+
+          if(data[i].ID == ADONG_NM){
+              hexa.push([data[i].SIGA], [ data[i].IN9], [ data[i].UP],
+                            [ data[i].SUYO], [data[i].GIGAN]);
+              console.log(hexa);
+              score.push("-전년 대비매출 증감률 (10점):&nbsp;&nbsp;&nbsp;   " + "<p>"+[data[i].UP]+"</p>"+"점"+"<br>"+
+                  "(올해 매출 - 작년 매출) / 작년 매출s×100" + "<br>"+
+                  "출처:서울 열린 데이터 광장 (2018년 1분기, 2019년 1분기) "+"<br>"+"<br>"+
+                  "-공급대비 수요(10점):&nbsp;&nbsp;&nbsp;" +  "<p>"+[data[i].SUYO]+"</p>"+"점"+ "<br>"+
+                  "--수요 (5점)" +"<br>"+
+                  "해당지역 매출 / 광역시도 매출" +"<br>"+
+                  "출처:서울 열린 데이터 광장" +"<br>"+
+                  "--공급 (5점)" +"<br>"+
+                  "-해당지역 업소수 / 광역시도 업소수" +"<br>"+
+                  "출처:공공데이터포털, 소상공인마당" +"<br>"+"<br>"+
+                  "-운영기간(10점):&nbsp;&nbsp;&nbsp;" + "<p>"+[data[i].GIGAN]+"</p>"+"점"+"<br>"+
+                  "최근 10년기준 영업기간" +"<br>"+
+                  "출처:서울 우리마을 가게(최근 10년 기준 2019년 2분기)"+"<br>"+"<br>"+
+                  "-전입인구(10점):&nbsp;&nbsp;&nbsp;" +"<p>"+[data[i].IN9]+"</p>"+"점"+"<br>"+
+                  "구내이동+구간이동+시ㆍ도간이동)" +"<br>"+
+                  "출처:공공데이터포털" +"<br>"+"<br>"+
+                  "-시가(10점):&nbsp;&nbsp;&nbsp;" +"<p>"+[data[i].IN9]+"</p>"+"점"+"<br>"+
+                  "아파트 면적(1m2)당 기준시가" +"<br>"+
+                  "출처:소상공인마당"
+
+              );
+          }
+      }
+      $('#score').html(score.join(""));
+      $('#hexa').highcharts({
+                         chart: {
+                              polar: true,
+                              type: 'line'
+                          },
+
+                          accessibility: {
+                              description: ''
+                          },
+
+                          title: {
+                              text: '',
+                              x: -80
+                          },
+                         pane: {
+                             size: '90%'
+                         },
+
+                         xAxis: {
+                             categories: ['시가', '인구', '증감률',
+                                 '수요', '운영기간'],
+                             tickmarkPlacement: 'on',
+                             lineWidth: 0
+                         },
+
+                         yAxis: {
+                             gridLineInterpolation: 'polygon',
+                             lineWidth: 0,
+                             min: 0
+                         },
+
+                         tooltip: {
+                             shared: true,
+                             pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+                         },
+
+                         legend: {
+                             align: 'right',
+                             verticalAlign: 'middle'
+                         },
+
+                         series: [{
+                             name: '',
+                             data: hexa,
+                             pointPlacement: 'on'
+                         } ],
+
+                         responsive: {
+                             rules: [{
+                                 condition: {
+                                     maxWidth: 500
+                                 },
+                                 chartOptions: {
+                                     legend: {
+                                         align: 'center',
+                                         verticalAlign: 'bottom'
+                                     },
+                                     pane: {
+                                         size: '90%'
+                                     }
+                                 }
+                             }]
+                         }
+
+                     });
+
+      })
+
+
+
+
+
+  });
+
+
+
+});
+
+function fn_option(code, name){
+  return '<option value="' + code +'">' + name +'</option>';
+}
+function moveUrl(url){
+    var dong = each(hangjungdong.dong)
+}
+
+	</script>
+
+
+
+<div style="width:70%;height:550px; margin:100px auto;" class="container">
+<div class="row">
+  <div class="dropdown col">
+		<select id="sido" class="form-control col-md-8" >
+			<option value="">선택</option>
+		</select>&nbsp;&nbsp;
+		<select id="sigugun" class="form-control col-md-8">
+			<option value="">선택</option>
+		</select>&nbsp;&nbsp;
+		<select id="dong" class="form-control col-md-8" >
+			<option value="">선택</option>
+		</select> <br>
+
+  </div>
+        <div id="map" class="col-8" style="width:100%; height:600px;"></div>
+    </div>
+
+</div>
+  <hr style = "height:50px;">
+  <!--테이블-->
+    <div class="row" style="margin: 50px;">
+  <table class="table col-6">
+    <thead class="table">
+
+      <tr>
+          <th>순위</th>
+          <th>추천업종</th>
+          <th>비추천업종</th>
+      </tr>
+    </thead>
+  </table>
+    </div>
+  <div id="gugup" style="text-align: center"></div>
+  <br><br>
+  <div class="row">
+  <div id="hexa" style="height: 400px" class="col-5"></div>
+  <div id="score" class="col-5"></div>
+  </div>
+{% endblock %}
