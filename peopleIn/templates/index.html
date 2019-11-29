@@ -71,14 +71,31 @@
     <div id="quick_bg">
       <div id="quick">
         <div id="back"><h5><a class="text-white" href="{% url 'crawled_data:crawled_list' %}">창업뉴스 바로가기</a></h5></div>
-        <div style="padding: 20px;">
+        <div style="padding: 20px; height:330px;">
           {% for news in news_list %}
               <h5><a class="text-dark" href="{{ news.link }}">{{ news.title }}</a></h5></br>
           {% endfor %}
         </div>
+                  <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 5px;padding-top: 5px;" onClick="close_pop();">
+                <span class="pop_bt" style="font-size: 13pt;" >
+                     닫기
+                </span>
+            </div>
       </div>
     </div>
   </div>
+
+      <script type="text/javascript">
+
+        jQuery(document).ready(function() {
+                $('#container').show();
+        });
+        //팝업 Close 기능
+        function close_pop(flag) {
+             $('#container').hide();
+        };
+
+      </script>
 {#<div id="floatMenu">#}
 {#플로팅 메뉴#}
 {#</div>#}
