@@ -9,7 +9,7 @@ django.setup()
 from crawled_data.models import BlogData
 
 def parse_blog():
-    req = requests.get('https://search.naver.com/search.naver?query=%EC%86%8C%EC%83%81%EA%B3%B5%EC%9D%B8+%EC%B0%BD%EC%97%85&where=news&ie=utf8&sm=nws_hty')
+    req = requests.get('https://search.naver.com/search.naver?where=news&query=%EC%86%8C%EC%83%81%EA%B3%B5%EC%9D%B8%20%EC%B0%BD%EC%97%85&sm=tab_opt&sort=1&photo=0&field=1&reporter_article=&pd=0&ds=&de=&docid=&nso=so%3Add%2Cp%3Aall%2Ca%3At&mynews=0&refresh_start=0&related=0')
     html = req.text
     soup = BeautifulSoup(html, 'html.parser')
     my_titles = soup.select(
