@@ -19,7 +19,7 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['item_list'] = Item.objects.order_by('-price')[:4]
-        context['news_list'] = BlogData.objects.order_by('id')[:5]
+        context['news_list'] = BlogData.objects.order_by('-id')[:5]
 
         return context
 
