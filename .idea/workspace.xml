@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7943640-7851-4571-9e7a-91f4c3f49e8d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawled_data/templates/crawled_data/crawled_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/crawled_data/templates/crawled_data/crawled_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawled_data/templates/crawled_data/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/crawled_data/templates/crawled_data/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopleIn/static/img/franlogo1.png" beforeDir="false" afterPath="$PROJECT_DIR$/peopleIn/static/img/franlogo1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopleIn/static/img/franlogo13.png" beforeDir="false" afterPath="$PROJECT_DIR$/peopleIn/static/img/franlogo13.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopleIn/static/img/franlogo18.png" beforeDir="false" afterPath="$PROJECT_DIR$/peopleIn/static/img/franlogo18.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopleIn/static/img/franlogo19.png" beforeDir="false" afterPath="$PROJECT_DIR$/peopleIn/static/img/franlogo19.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopleIn/static/img/franlogo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/peopleIn/static/img/franlogo2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopleIn/static/img/franlogo3.png" beforeDir="false" afterPath="$PROJECT_DIR$/peopleIn/static/img/franlogo3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopleIn/static/img/franlogo5.png" beforeDir="false" afterPath="$PROJECT_DIR$/peopleIn/static/img/franlogo5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopleIn/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/peopleIn/templates/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="e7943640-7851-4571-9e7a-91f4c3f49e8d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/peopleIn/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-48">
-              <caret line="168" lean-forward="true" selection-start-line="168" selection-end-line="168" />
+              <caret line="168" selection-start-line="168" selection-end-line="168" />
               <folding>
                 <element signature="e#5016#5036#0#HTML" expanded="true" />
               </folding>
@@ -132,9 +119,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -335,9 +326,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26153848" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26153848" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -351,7 +343,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.4911032" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.14590748" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -442,9 +434,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/peopleIn/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -454,10 +443,17 @@
     <entry file="file://$PROJECT_DIR$/peopleIn/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-48">
-          <caret line="168" lean-forward="true" selection-start-line="168" selection-end-line="168" />
+          <caret line="168" selection-start-line="168" selection-end-line="168" />
           <folding>
             <element signature="e#5016#5036#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
         </state>
       </provider>
     </entry>
