@@ -14,10 +14,17 @@
         <input type="text" name="q" value="{{ q }}" />
         <input type="submit" value="검색" />
     </form>
-    <p class="lead text-muted mb-5"></p>
-    {% for news in crawled_list %}
-      <h5><a class="text-dark" href="{{ news.link }}">{{ news.title }}</a></h5></br>
-      {% endfor %}
+      <div>
+        <div id="post" style="width:450px; height:600px; margin: 0 50px 0 30px; float:left;">
+            <img src="/static/img/sosang.jpg" alt="" width="450px;" height="580px;">
+        </div>
+        <p class="lead text-muted mb-5"></p>
+      </br>
+        {% for news in crawled_list %}
+          <h5><a class="text-dark" href="{{ news.link }}">{{ news.title }}</a></h5></br>
+          {% endfor %}
+      </div>
+
   </div>
 </section>
 

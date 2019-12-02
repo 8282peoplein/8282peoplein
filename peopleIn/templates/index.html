@@ -61,26 +61,38 @@
 
     <style>
     #quick_bg {text-align:center; width:1130px;}
-    #quick {margin:0 auto;text-align:center; position:absolute;z-index:1000;height:380px;width:250px;right:40px; background-color: white;}
+    #quick {margin:0 auto;text-align:center; position:absolute;
+        z-index:1000;height:400px;width:250px;
+        right:40px;background-color: white;}
     #container {position:relative; bottom: 300px;z-index:1000;}
-    #back {padding: 10px; height: 50px; background-color: #aeb3b9;z-index:1000;}
+    #back {background-color: #dddddd;padding: 10px; height: 50px; z-index:1000;}
+    #title:hover {
+      color: blue;
+    }
+    .text-black {
+        font-size: 25px;
+        font-weight: bold;
+    }
     </style>
 
 <body>
   <div id="container">
     <div id="quick_bg">
       <div id="quick">
-        <div id="back"><h5><a class="text-white" href="{% url 'crawled_data:crawled_list' %}">창업뉴스 바로가기</a></h5></div>
-        <div style="padding: 20px; height:330px;">
-          {% for news in news_list %}
-              <h5><a class="text-dark" href="{{ news.link }}">{{ news.title }}</a></h5></br>
-          {% endfor %}
-        </div>
-                  <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 5px;padding-top: 5px;" onClick="close_pop();">
-                <span class="pop_bt" style="font-size: 13pt;" >
-                     닫기
-                </span>
+        <div id="back"><a class="text-black" href="{% url 'crawled_data:crawled_list' %}">창업뉴스</a></div>
+          <div style="padding: 20px; height:350px;">
+              {% for news in news_list %}
+                  <h5><a id="title" href="{{ news.link }}">{{ news.title }}</a></h5></br>
+              {% endfor %}
             </div>
+          <div style="border: 2px solid #dddddd; cursor:pointer;
+          background-color:#dddddd;text-align: center;
+          padding-bottom: 5px;padding-top: 5px;" onClick="close_pop();">
+            <span class="pop_bt" style="font-size: 13pt;" >
+                 닫기
+            </span>
+        </div>
+        </div>
       </div>
     </div>
   </div>
@@ -146,7 +158,7 @@
 		<video id="myVideo" loop muted data-autoplay>
 			<source src="{% static 'img/gangnam2.mp4' %}" type="video/mp4">
 		</video>
-        <h1 style="z-index: 10; font-size: 70px; font-family: '나눔고딕';">피플인<br> 상권 분석 시스템<br><br></h1>
+        <h1 style="z-index: 10; font-size: 70px; font-family: '나눔고딕';">피플인<br>상권 분석 시스템<br><br></h1>
 	</div><!-- /.section0끝 -->
 	<div class="section" id="section1">
 			<div class="intro">
@@ -157,7 +169,7 @@
 
     <section>
   <div class="container">
-    <h2>forSale</h2>
+{#    <h2>forSale</h2>#}
     <p class="lead text-muted mb-5"></p>
     <div class="row">
     {% for item in item_list %}
@@ -200,18 +212,18 @@
     <br>
 		<div class="list_wrap">
 		  <ul>
-			<li class="list"><img src="/static/img/franlogo1.png" alt="쥬씨""></li>
+			<li class="list"><img src="/static/img/franlogo1.png" alt="쥬씨"></li>
 			<li class="list"><img src="/static/img/franlogo3.png"></li>
 			<li class="list"><img src="/static/img/franlogo5.png"></li>
 			<li class="list"><img src="/static/img/franlogo2.png"></li>
-			<li class="list"><img src="/static/img/franlogo7.png"></li>
-			<li class="list"><img src="/static/img/franlogo2.png"></li>
-			<li class="list"><img src="/static/img/franlogo18.png"></li>
+			<li class="list"><img src="/static/img/franlogo20.png"></li>
+			<li class="list"><img src="/static/img/franlogo10.png"></li>
+			<li class="list"><img src="/static/img/franlogo23.png"></li>
 			<li class="list"><img src="/static/img/franlogo19.png"></li>
 			<li class="list"><img src="/static/img/franlogo18.png"></li>
 			<li class="list"><img src="/static/img/franlogo13.png"></li>
-			<li class="list"><img src="/static/img/franlogo7.png"></li>
-			<li class="list"><img src="/static/img/franlogo5.png"></li>
+			<li class="list"><img src="/static/img/franlogo26.png"></li>
+			<li class="list"><img src="/static/img/franlogo22.png"></li>
 		</ul>
 		</div>
 {#    <div id="topcircle">#}
