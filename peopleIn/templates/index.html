@@ -20,137 +20,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-
-
-{#    <style>#}
-{#    #topcircle{#}
-{#      margin-top:70px;#}
-{#    }#}
-{#    #circle1 {#}
-{#      background-color:#ffffff;#}
-{#      opacity: 0.8;#}
-{#      width:155px;#}
-{#      height:155px;#}
-{#      border-radius:75px;#}
-{#      text-align:center;#}
-{#      margin:0 35px 0 0;#}
-{#      font-size:12px;#}
-{#      vertical-align:middle;#}
-{#      line-height:150px;#}
-{#      display: inline-block;#}
-{#      }#}
-{#    #toptext{#}
-{##}
-{#    }#}
-{#    #text1 {#}
-{#      color: #ffffff;#}
-{#      width:155px;#}
-{#      height:155px;#}
-{#      text-align:center;#}
-{#      padding-top:10px;#}
-{#      margin:0 35px 0 0;#}
-{#      font-size:15px;#}
-{#      vertical-align:middle;#}
-{#      display: inline-block;#}
-{#      }#}
-{#    </style>#}
-{#  	플로팅 배너 제이쿼리 코드#}
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
-
-
-
-    <style>
-    #quick_bg {text-align:center; width:1130px;}
-    #quick {margin:0 auto;text-align:center; position:absolute;
-        z-index:1000;height:400px;width:250px;
-        right:40px;background-color: white;}
-    #container {position:relative; bottom: 300px;z-index:1000;}
-    #back {background-color: #dddddd;padding: 10px; height: 50px; z-index:1000;}
-    #title:hover {
-      color: blue;
-    }
-    .text-black {
-        font-size: 25px;
-        font-weight: bold;
-    }
-    </style>
-
 <body>
-  <div id="container">
-    <div id="quick_bg">
-      <div id="quick">
-        <div id="back"><a class="text-black" href="{% url 'crawled_data:crawled_list' %}">창업뉴스</a></div>
-          <div style="padding: 20px; height:350px;">
-              {% for news in news_list %}
-                  <h5><a id="title" href="{{ news.link }}">{{ news.title }}</a></h5></br>
-              {% endfor %}
-            </div>
-          <div style="border: 2px solid #dddddd; cursor:pointer;
-          background-color:#dddddd;text-align: center;
-          padding-bottom: 5px;padding-top: 5px;" onClick="close_pop();">
-            <span class="pop_bt" style="font-size: 13pt;" >
-                 닫기
-            </span>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-      <script type="text/javascript">
-
-        jQuery(document).ready(function() {
-                $('#container').show();
-        });
-        //팝업 Close 기능
-        function close_pop(flag) {
-             $('#container').hide();
-        };
-
-      </script>
-{#<div id="floatMenu">#}
-{#플로팅 메뉴#}
-{#</div>#}
-{##}
-{#  <script>#}
-{#  $(document).ready(function() {#}
-{##}
-{#	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.#}
-{#	var floatPosition = parseInt($("#floatMenu").css('top'));#}
-{#	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );#}
-{##}
-{#	$(window).scroll(function() {#}
-{#		// 현재 스크롤 위치를 가져온다.#}
-{#		var scrollTop = $(window).scrollTop();#}
-{#		var newPosition = scrollTop + floatPosition + "px";#}
-{##}
-{#		/* 애니메이션 없이 바로 따라감#}
-{#		 $("#floatMenu").css('top', newPosition);#}
-{#		 */#}
-{##}
-{#		$("#floatMenu").stop().animate({#}
-{#			"top" : newPosition#}
-{#		}, 500);#}
-{##}
-{#	}).scroll();#}
-{##}
-{#});#}
-{#  </script>#}
-
-  <script>
-  var quick_menu = $('#quick');
-  var quick_top = 470;
-
-  quick_menu.css('top', $(window).height() );
-  $(document).ready(function(){
-  quick_menu.animate( { "top": $(document).scrollTop() + quick_top +"px" }, 200 );
-  $(window).scroll(function(){
-  quick_menu.stop();
-  quick_menu.animate( { "top": $(document).scrollTop() + quick_top + "px" }, 500 );
-  });
-  });
-  </script>
-
 
 <div id="fullpage">
 	<div class="section" id="section0">
@@ -158,7 +28,10 @@
 		<video id="myVideo" loop muted data-autoplay>
 			<source src="{% static 'img/gangnam2.mp4' %}" type="video/mp4">
 		</video>
-        <h1 style="z-index: 10; font-size: 70px; font-family: '나눔고딕';">피플인<br>상권 분석 시스템<br><br></h1>
+        <h1 style="z-index: 10; font-size: 70px; font-family: '나눔고딕';">Commercial Area<br>Analysis
+            System</h1>
+        <p style="color: white; font-weight: bold; z-index: 1000; font-size: 25px; font-family: '나눔고딕';">소상공인을 위한 상권분석
+            사이트 피플인</p>
 	</div><!-- /.section0끝 -->
 	<div class="section" id="section1">
 			<div class="intro">

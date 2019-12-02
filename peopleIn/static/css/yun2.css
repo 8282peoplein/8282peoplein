@@ -348,7 +348,12 @@ a:hover{text-decoration:none}
 	}
 
 	#section0 h1{
-		top: 50%;
+		top: 40%;
+		transform: translateY(-50%);
+		position: relative;
+	}
+    #section0 p{
+		top: 37%;
 		transform: translateY(-50%);
 		position: relative;
 	}
