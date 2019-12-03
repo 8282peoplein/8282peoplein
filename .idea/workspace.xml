@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7943640-7851-4571-9e7a-91f4c3f49e8d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chu/templates/chu/chu_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/chu/templates/chu/chu_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopleIn/static/agency.css" beforeDir="false" afterPath="$PROJECT_DIR$/peopleIn/static/agency.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peopleIn/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/peopleIn/templates/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="e7943640-7851-4571-9e7a-91f4c3f49e8d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,16 +40,18 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="7" />
+          <entry key="css" value="8" />
           <entry key="gitignore" value="1" />
-          <entry key="html" value="10" />
+          <entry key="html" value="11" />
+          <entry key="json" value="1" />
           <entry key="py" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="7" />
-          <entry key="HTML" value="10" />
+          <entry key="CSS" value="8" />
+          <entry key="HTML" value="11" />
+          <entry key="JSON" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Python" value="8" />
         </counts>
@@ -68,33 +65,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="215">
               <caret line="242" column="16" selection-start-line="242" selection-start-column="16" selection-end-line="242" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/peopleIn/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="23" selection-start-line="23" selection-end-line="29" selection-end-column="87" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/franchise/templates/franchise/franchise_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/franchise/static/css/fullpage.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2760">
-              <caret line="120" column="30" selection-start-line="120" selection-start-column="30" selection-end-line="120" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -140,8 +110,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/chu/static/css/chu.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/peopleIn/static/forms.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sang/static/hexa.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/peopleIn/templates/registration/login.html">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -212,13 +201,14 @@
               <item name="peopleIn2" type="b2602c69:ProjectViewProjectNode" />
               <item name="peopleIn2" type="462c0819:PsiDirectoryNode" />
               <item name="peopleIn" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="peopleIn2" type="b2602c69:ProjectViewProjectNode" />
               <item name="peopleIn2" type="462c0819:PsiDirectoryNode" />
               <item name="peopleIn" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="registration" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -232,6 +222,15 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\peopleIn2\peopleIn\templates\registration" />
+      <recent name="C:\peopleIn2\sang\static" />
+      <recent name="C:\peopleIn2\peopleIn\static" />
+      <recent name="C:\peopleIn2\chu\static\css" />
+      <recent name="C:\peopleIn2\chu\templates\chu" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -315,9 +314,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="452" y="63" width="786" height="634" extended-state="0" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35261708" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20728745" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -331,7 +330,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.45908183" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.7580071" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -491,6 +490,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/chu/static/css/chu.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/peopleIn/static/forms.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sang/static/hexa.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/peopleIn/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
