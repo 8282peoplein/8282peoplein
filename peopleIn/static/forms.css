@@ -1,6 +1,4 @@
 
-
-
 /* Form Error */
 .errornote {
     display: block;
@@ -38,13 +36,6 @@ fieldset {
     background: #ffc;
 }
 
-body {
-    text-align: center;
-    padding-top: 40px;
-    padding-bottom: 200px;
-    background-color: #f5f5f5;
-    margin: auto;
-}
 
 /* 회원가입 폼 csss */
 
@@ -55,13 +46,7 @@ body {
   margin: auto;
 }
 
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
+
 
 
 /* 회원가입 폼 csss */
@@ -203,4 +188,18 @@ hr { color:black;width: 350px;}
     background-color: #618C03;
     border-color: #618C03;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -12,26 +12,31 @@
 {% load staticfiles %}
 
   <script>
-    $(window).on("scroll", function() {
-        if ($(window).scrollTop() > 300) {
-            $("#mainNav").css("background-color","#ffffff").css("border-bottom", "1px solid #ddd");
-            $("#mainNav .navbar-brand").css("color", "#000000");
-            $(".navbar-nav .nav-item .nav-link").css("color","#000000");
-        }else {
-      $("#mainNav").css("background-color","transparent").css("border-bottom", "none");
-      $("#mainNav .navbar-brand").css("color", "#ffffff");
+	$(window).on("scroll", function() {
+		if ($(window).scrollTop() > 300) {
+			$("#mainNav").css("background-color","#ffffff").css("box-shadow", "0 0 14px rgba(0,0,0,.4)");
+			$(".navbar-nav .nav-item .nav-link").css("color","#000000");
+		}else {
+      $("#mainNav").css("background-color","transparent").css("box-shadow", "none");
       $(".navbar-nav .nav-item .nav-link").css("color","#ffffff");
-        }
-    });
+		}
+	});
 </script>
 
 <div style="height:400px; width:100%; background-image: url({% static 'img/업종추천.jpg' %});">
   <h1 class="menu_name">업종추천</h1>
 </div>
 
-   <script src="https://code.jquery.com/jquery-latest.min.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-latest.min.js" type="application/javascript"></script>
     <script src="{% static 'js/hexa.js' %}" type="application/javascript"></script>
-   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2efc7c37bb5224fa7e38f9b7f3a8bc32&libraries=services,clusterer,drawing"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2efc7c37bb5224fa7e38f9b7f3a8bc32&libraries=services,clusterer,drawing"></script>
     <link href='{% static "css/chu.css" %}' rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -41,10 +46,10 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 
-   <script>
+	<script>
 
 
-      jQuery(document).ready(function(){
+		jQuery(document).ready(function(){
   //sido option 추가
   jQuery.each(hangjungdong.sido, function(idx, code){
     //append를 이용하여 option 하위에 붙여넣음
@@ -96,7 +101,7 @@
               items.push("<tr>");
               items.push("<th>" +"2" +"</th>");
               items.push("<td>" + [data[i].chu2] + "</td>");
-              items.push("<td>" + [data[i].bchu2] + "</td>");
+              items.push("<td>" + [data[i].bchu2] + "</td>");;
               items.push("<tr>");
               items.push("<th>" +"3" +"</th>");
               items.push("<td>" + [data[i].chu3] + "</td>");
@@ -104,14 +109,14 @@
               items.push("<tr>");
               items.push("<th>" +"4" +"</th>");
               items.push("<td>" + [data[i].chu4] + "</td>");
-              items.push("<tr>");
+              items.push("<tr>")
               console.log(items);
               gugu.push("<p>"+[data[i].dong_name]+"</p>"+"은 "+"<p>"+[data[i].a]+"</p>"+" 이 "+"<p>"+[data[i].b]+"</p>"+"개일 때 "
                   + "<p>"+[data[i].bchu1]+"</p>" + "는 " + "<p>"+[data[i].c]+"</p>" +"개이며 " + "<p>"+[data[i].d]+"</p>"
                   +" 상권입니다.<br>인구밀도가 비슷한 지역으로는 " + "<p>"+[data[i].e]+"</p>" +"이 있으며 " + "<p>"+[data[i].a]+"</p>" +"이 "
                   + "<p>"+[data[i].f]+"</p>" + "개일 때 " + "<p>"+[data[i].bchu1]+"</p>" + "는 " + "<p>"+[data[i].g]+"</p>"
                   + "개입니다.<br>서로 영향을 미치는 업종을 분석한 결과 " + "<p>"+[data[i].chu1]+", "+[data[i].chu2]+", "+[data[i].chu3]+", "
-                  +[data[i].chu4]+ "</p>" + "을(를) 추천합니다."
+                  +[data[i].chu4]+ "</p>" + "을 추천합니다."
               );
 
           }
@@ -172,29 +177,50 @@
 
           if(data[i].ID == ADONG_NM){
               hexa.push([data[i].SIGA], [ data[i].IN9], [ data[i].UP],
-                            [ data[i].SUYO], [data[i].GIGAN]);
+                            [ data[i].SUGO], [data[i].GIGAN]);
               console.log(hexa);
-              score.push("<h4>" + [data[i].NAME] + "</h4>" + "<h6 style='height:30px;'>-전년 대비매출 증감률 (10점):&nbsp;&nbsp;&nbsp;   " + "<p>"+[data[i].UP]+"</p>"+"점"+"</h6>"+
-                  "(올해 매출 - 작년 매출) / 작년 매출×100" + "<br>"+ "<br>"+
+              score.push("<thead>");
+              score.push("<tr>");
+              score.push("<th>"+"구분"+"</th>");
+              score.push("<th>"+"점수"+"</th>");
+              score.push("<th>"+"내용"+"</th>");
+              score.push("</tr>");
+              score.push("</thead>");
+              score.push("<tbody>");
+              score.push("<tr>");
+              score.push("<th>"+"전년 대비매출 증감률          "+"<br>" +"     (10점)" +"</th>");
+              score.push("<td>"+"<p>"+[data[i].UP]+"</p>"+"점"+"</td>");
+              score.push("<td>"+"(올해 매출 - 작년 매출) / 작년 매출×100                " +"</td>");
+              score.push("</tr>");
+              score.push("<tr>");
+              score.push("<th>"+"공급대비 수요"+"<br>" +"(10점)" +"</th>");
+              score.push("<td>"+"<p>"+[data[i].SUGO]+"</p>"+"점"+"</td>");
+              score.push("<td>"+"- 수요 (해당지역 매출 / 광역시도 매출)"+"<br>"
+                                +"- 공급 (해당지역 업소수 / 광역시도 업소수)"+"</td>");
+              score.push("</tr>");
+              score.push("<tr>");
+              score.push("<th>"+ "운영기간"+"<br>" +"(10점)" +"</th>");
+              score.push("<td>"+"<p>"+[data[i].GIGAN]+"</p>"+"점"+"</td>");
+              score.push("<td>"+"최근 10년기준 영업기간" +"<br>"+"</td>");
+              score.push("</tr>");
 
-                  "<h6 style='height:30px;'>-공급대비 수요(10점):&nbsp;&nbsp;&nbsp;" +  "<p>"+[data[i].SUYO]+"</p>"+"점"+ "</h6>"+
-                  "--수요 (5점)" +"<br>"+
-                  "해당지역 매출 / 광역시도 매출" +"<br>"+
+              score.push("<tr>");
+              score.push("<th>"+ "전입인구"+"<br>" +"(10점)" +"</th>");
+              score.push("<td>"+"<p>"+[data[i].IN9]+"</p>"+"점"+"</td>");
+              score.push("<td>"+"구내이동 + 구간이동 + 시ㆍ도간이동" +"</td>");
+              score.push("</tr>");
 
-                  "--공급 (5점)" +"<br>"+
-                  "해당지역 업소수 / 광역시도 업소수" +"<br>"+ "<br>"+
+              score.push("<tr>");
+              score.push("<th>"+"시가"+"<br>" +"(10점)" +"</th>");
+              score.push("<td>"+"<p>"+[data[i].SIGA]+"</p>"+"점"+"<br>"+"</td>");
+              score.push("<td>"+"아파트 면적(1m2) 당 기준시가" +"<br>"+"</td>");
+              score.push("</tr>");
+              score.push("</tbody>");
 
-                  "<h6 style='height:30px;'>-운영기간(10점):&nbsp;&nbsp;&nbsp;" + "<p>"+[data[i].GIGAN]+"</p>"+"점"+"</h6>"+
-                  "최근 10년기준 영업기간" +"<br>"+ "<br>"+
 
-                  "<h6 style='height:30px;'>-전입인구(10점):&nbsp;&nbsp;&nbsp;" +"<p>"+[data[i].IN9]+"</p>"+"점"+"</h6>"+
-                  "구내이동+구간이동+시ㆍ도간이동" +"<br>"+ "<br>"+
-
-                  "<h6 style='height:30px;'>-시가(10점):&nbsp;&nbsp;&nbsp;" +"<p>"+[data[i].IN9]+"</p>"+"점"+"<br></h6>"+
-                  "아파트 면적(1m2)당 기준시가" +"<br>"
-              );
           }
       }
+
       $('#score').html(score.join(""));
       $('#hexa').highcharts({
                          chart: {
@@ -216,7 +242,7 @@
 
                          xAxis: {
                              categories: ['시가', '인구', '증감률',
-                                 '수요', '운영기간'],
+                                 '공급대비 수요', '운영기간'],
                              tickmarkPlacement: 'on',
                              lineWidth: 0
                          },
@@ -281,25 +307,25 @@ function moveUrl(url){
     var dong = each(hangjungdong.dong)
 }
 
-   </script>
+	</script>
 
 
 
-<div style="width:70%;height:400px; margin:100px auto;" class="container">
+<div style="width:70%;height:550px; margin:100px auto;" class="container">
 <div class="row">
   <div class="dropdown col">
-      <select id="sido" class="form-control col-md-8" >
-         <option value="">선택</option>
-      </select>&nbsp;&nbsp;
-      <select id="sigugun" class="form-control col-md-8">
-         <option value="">선택</option>
-      </select>&nbsp;&nbsp;
-      <select id="dong" class="form-control col-md-8" >
-         <option value="">선택</option>
-      </select> <br>
+		<select id="sido" class="form-control col-md-8" >
+			<option value="">선택</option>
+		</select>&nbsp;&nbsp;
+		<select id="sigugun" class="form-control col-md-8">
+			<option value="">선택</option>
+		</select>&nbsp;&nbsp;
+		<select id="dong" class="form-control col-md-8" >
+			<option value="">선택</option>
+		</select> <br>
 
   </div>
-        <div id="map" class="col-8" style="width:100%; height:400px;"></div>
+        <div id="map" class="col-8" style="width:100%; height:600px;"></div>
     </div>
 
 </div>
@@ -314,13 +340,18 @@ function moveUrl(url){
           <th>추천업종</th>
           <th>비추천업종</th>
       </tr>
+
     </thead>
   </table>
     </div>
   <div id="gugup" style="text-align: center"></div>
   <br><br>
-  <div class="row">
-  <div id="hexa" style="height: 400px; margin-right: 0px;" class="col-5"></div>
-  <div id="score" class="col-5"></div>
+  <div class="container">
+  <div class="row" style="margin: 50px;">
+  <div id="hexa" style="height: 400px" class="col-sm"></div>
+    <div class="col-auto">
+        <div id="score" class="table table-bordered" style="text-align: center"></div>
+    </div>
+  </div>
   </div>
 {% endblock %}

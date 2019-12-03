@@ -5,41 +5,216 @@
 
 {% block content %}
 
-  <br>  <br>
 
 
-<span id="content" >
-{# <h1 class="h3 mb-3 font-weight-normal">로그인</h1>#}
-  <form class="form-signin" action="." method="post">{% csrf_token %} <!-- {% csrf_token %} 해킹을 막음 -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/offcanvas/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+
+
+    <style>
+
+        body {
+            background: #9ebf24;
+
+            min-height: 100vh;
+        }
+
+
+        /* STRUCTURE */
+
+        .wrapper {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            min-height: 100%;
+            padding: 20px;
+        }
+
+        #formContent {
+            -webkit-border-radius: 10px 10px 10px 10px;
+            border-radius: 10px 10px 10px 10px;
+            background: #fff;
+            padding: 30px;
+            margin-top: 100px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+
+            -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+
+
+
+
+        /* Simple CSS3 Fade-in-down Animation */
+
+        .fadeInDown {
+            -webkit-animation-name: fadeInDown;
+            animation-name: fadeInDown;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        @-webkit-keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        /* Simple CSS3 Fade-in Animation */
+
+        @-webkit-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @-moz-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fadeIn {
+            opacity: 0;
+            -webkit-animation: fadeIn ease-in 1;
+            -moz-animation: fadeIn ease-in 1;
+            animation: fadeIn ease-in 1;
+            -webkit-animation-fill-mode: forwards;
+            -moz-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+            -webkit-animation-duration: 1s;
+            -moz-animation-duration: 1s;
+            animation-duration: 1s;
+        }
+
+        .fadeIn.first {
+            -webkit-animation-delay: 0.4s;
+            -moz-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+        }
+
+
+.logologin {
+    width:360px;
+}
+
+.loginformgroup{
+
+    width: 350px;
+    left: 50px;
+    bottom: 5em;
+}
+
+.btn-primary {
+    background-color: #618C03;
+    border-color: #618C03;
+}
+
+    </style>
+
+<form action="." method="post">{% csrf_token %} <!-- {% csrf_token %} 해킹을 막음 -->
       {% if form.errors %}
         <p class="errornote">아이디 또는 비밀번호를 다시 확인하세요.</p><br>
+{#      {% elif user.is_anonymous %}#}
+{#        <p class="errornote">접근 권한이 없습니다.</p><br>#}
       {% endif %}
 
-{#      <p>아이디와 비밀번호를 알려 주세요.</p>#}
-  <div class="loginform">
-      <a href="{% url 'index' %}"><img class="logologin" src="{% static '4.png' %}"></a>
-      <div class="loginformgroup">
-          <div class="form-group">
-              <input type="text" class="form-control" name="username" placeholder="Username" required="required">
-          </div>
-          <div class="form-group">
-              <input type="password" class="form-control" name="password" placeholder="Password" required="required">
-          </div>
-          <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">로그인</button>
-          </div>
-          <div>
-              <hr/>
-              <span class="exfun">아이디찾기</span>|&nbsp;<span class="exfun">비밀번호찾기 </span>&nbsp;|
-              <a href="{% url 'register' %}"><span class="exfun2">회원가입</span></a>&nbsp;&nbsp;&nbsp;
-          </div>
-      </div>
 
+
+
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+
+                <!-- Icon -->
+
+                    <a class="fadeIn first"><img class="logologin" src="/static/4.png"></a>
+
+
+                    <div class="loginformgroup">
+                      <div class="form-group">
+                          <input type="text" style="padding: 22px;" class="form-control" name="username" placeholder="Username" required="required">
+                      </div>
+                      <div class="form-group">
+                          <input type="password" style="padding: 22px;" class="form-control" name="password" placeholder="Password" required="required">
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">로그인</button>
+                      </div>
+                    </div>
+
+
+                <div>
+                  <br><br><br>
+                    <hr>
+                    <span class="exfun">아이디찾기</span>|&nbsp;<span class="exfun">비밀번호찾기 </span>&nbsp;|
+                    <a href="/accounts/register/"><span class="exfun2">회원가입</span></a>&nbsp;&nbsp;&nbsp;
+                </div>
+
+            </div>
+        </div>
   </div>
     <!-- 자바스크립트 활용 -->
     <script type="text/javascript">document.getElementById('id_username').focus();</script>
 
   </form>
 
-</span>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+
+
 {% endblock %}
