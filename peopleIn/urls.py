@@ -25,7 +25,6 @@ urlpatterns = [
     path('question/', include('question.urls')),
     path('franchise/', include('franchise.urls')),
     path('sang/', include('sang.urls')),
-    path('map/', include('map.urls')),
     path('chu/', include('chu.urls')),
     path('newchu/', include('newchu.urls')),
     path('crawled_data/', include('crawled_data.urls')),
